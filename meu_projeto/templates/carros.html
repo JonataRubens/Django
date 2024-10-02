@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Carros</title>
+</head>
+<body>
+    <h1>Lista de Carros</h1>
+
+    <ul>
+        {% for carro in veiculos %}
+            <li>
+                <strong>Montadora:</strong> {{ carro.get_montadora_display }} <br>
+                <strong>Modelo:</strong> {{ carro.modelo }} <br>
+                <strong>Ano:</strong> {{ carro.ano }} <br>
+                <hr>
+            </li>
+        {% empty %}
+            <li>Nenhum carro cadastrado.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

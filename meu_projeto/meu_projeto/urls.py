@@ -16,8 +16,9 @@ Including another URLconf
 """
 from . import views
 from django.contrib import admin
-from django.urls import path, include
-from django.contrib.auth import logout
+from django.urls import path 
+from django.urls import path
+from .views import ListarCarros
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,6 +26,9 @@ urlpatterns = [
     path('test/', views.test, name='test'),
     path('youname/<str:name>', views.youname),
     path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
+
+
+
+    path('carros/', ListarCarros.as_view(), name='listar_carros'),
     
 ]
