@@ -54,6 +54,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'meu_projeto.urls'
 LOGIN_REDIRECT_URL = '/carros/'
+LOGIN_URL = '/login/' 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 TEMPLATES = [

@@ -1,20 +1,22 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
-from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from .models import Carro
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .forms import CarroForm
+from django import forms
 
 
-def home(request):
-    return render(request, 'home.html') 
-
-def test(request):
-    return render(request, 'test.html')
-
-def youname(request, name):
-    return render(request, 'youname.html', {'name': name})
+class ListarCarros(LoginRequiredMixin, ListView):
+    model = Carro
+    context_object_name = 'veiculos'
+    template_name = 'carros.html'
+    login_url = '/login/'
 
 def login_view(request):
     if request.method == 'POST':
@@ -30,9 +32,9 @@ def login_view(request):
     
     return render(request, 'login.html')  # Renderiza a tela de login
 
-
-class ListarCarros(ListView):
+class CarroUpdateView(UpdateView):
     model = Carro
-    template_name = 'carros.html'
-    context_object_name = 'veiculos'
-
+    form_class = CarroForm
+    template_name = 'editar_carro.html'  # Nome do template para exibir o formulário
+    context_object_name = 'carro'  # Nome do objeto que será passado para o template
+    success_url = reverse_lazy('listar_carros')

@@ -1,22 +1,133 @@
+<!-- carros.html -->
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Carros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .buttons a {
+            padding: 8px 16px;
+            margin: 5px;
+            color: white;
+            background-color: #007bff;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .buttons a.delete {
+            background-color: #dc3545;
+        }
+
+        .buttons a.edit {
+            background-color: #28a745;
+        }
+        h1{
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #0056b3;
+            border-radius: 4px;
+        }
+        
+    </style>
 </head>
 <body>
+    <!-- Barra de Navegação -->
+    <div class="navbar">
+        <ul>
+            <li><a href="{% url 'listar_carros' %}">Listar Carros</a></li>
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        </ul>
+    </div>
     <h1>Lista de Carros</h1>
 
-    <ul>
+    <div class="carros">
         {% for carro in veiculos %}
-            <li>
-                <strong>Montadora:</strong> {{ carro.get_montadora_display }} <br>
-                <strong>Modelo:</strong> {{ carro.modelo }} <br>
-                <strong>Ano:</strong> {{ carro.ano }} <br>
-                <hr>
-            </li>
+        <div class="card">
+            {% if carro.imagem %}
+                <img src="{{ carro.imagem.url }}" alt="Imagem do {{ carro.modelo }}" style="max-width: 800px;">
+            {% else %}
+                <p>Imagem não disponível</p>
+            {% endif %}
+            <h3>{{ carro.modelo }}</h3>
+            <p><strong> Ano: {{ carro.ano }}</strong></p>
+            <p><strong>Montadora: {{ carro.get_montadora_display }}</strong></p>
+
+            <div class="buttons">
+                <a href="{% url 'editar_carro' carro.pk %}">Editar</a>
+
+                
+            </div>
+        </div>
         {% empty %}
-            <li>Nenhum carro cadastrado.</li>
+            <p>Não há carros cadastrados.</p>
         {% endfor %}
-    </ul>
+    </div>
+
 </body>
 </html>

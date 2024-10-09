@@ -25,6 +25,7 @@ class Carro(models.Model):
     modelo = models.CharField(max_length=50)
     ano = models.IntegerField()
     cor = models.CharField(max_length=50, choices=OPCOES_CORES)
+    imagem = models.ImageField(upload_to='carros_imagens/', blank=True, null=True)
 
     def __str__(self):
         return f'{self.montadora} {self.modelo} ({self.ano})'

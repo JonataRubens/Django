@@ -5,8 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        input, button {
+            width: 92%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 12px;
+        }
+
+        .login-container {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 250px;
+        }
+</style>
 <body>
-    <form method="POST" action="{% url 'login' %}">
+    <div class="login-container">
+    <form method="POST" action="{% url '/login/' %}">
         {% csrf_token %}
         <label for="username">Usuário:</label>
         <input type="text" id="username" name="username" required>
@@ -16,5 +47,6 @@
         
         <button type="submit">Entrar</button>
     </form>
+    </div>
 </body>
 </html>

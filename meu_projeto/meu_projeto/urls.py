@@ -18,17 +18,17 @@ from . import views
 from django.contrib import admin
 from django.urls import path 
 from django.urls import path
-from .views import ListarCarros
+from .views import CarroUpdateView, ListarCarros
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('test/', views.test, name='test'),
-    path('youname/<str:name>', views.youname),
-    path('login/', views.login_view, name='login'),
-
-
-
+    path('', views.login_view, name='/login/'),
     path('carros/', ListarCarros.as_view(), name='listar_carros'),
     
+    path('editar_carro/<int:pk>/', CarroUpdateView.as_view(), name='editar_carro'),
+    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
