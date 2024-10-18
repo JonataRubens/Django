@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Carro
 from .forms import CarroForm
+from django.shortcuts import render, redirect
 
 class ListarCarros(LoginRequiredMixin, ListView):
     model = Carro
@@ -39,6 +40,17 @@ def exclusao_carro(request, carro_id):
     
     if request.method == 'POST':
         carro.delete()
-        return redirect('listar_carros')  # Redireciona para a lista de carros após exclusão
+        return redirect('listar_carros')
     
-    return render(request, 'exclusao.html', {'carro': carro})
+    return redirect('listar_carros')
+
+def adicionar_carro(request):
+    if request.method == 'POST':
+        form = CarroForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_carros')
+    else:
+        form = CarroForm()
+    
+    return render(request, 'add_car.html', {'form': form})

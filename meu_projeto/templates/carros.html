@@ -11,6 +11,7 @@
     <div class="navbar">
         <ul>
             <li><a href="{% url 'listar_carros' %}">Listar Carros</a></li>
+            <li><a href="{% url 'adicionar_carro' %}">Add Car</a></li>
             <li><a href="{% url 'admin:index' %}">Admin</a></li>
         </ul>
     </div>
@@ -29,7 +30,12 @@
 
             <div class="buttons">
                 <a href="{% url 'editar_carro' carro.pk %}">Editar</a>
-                <a id="btn_excluir" href="{% url 'excluir_carro' carro.pk %}">Excluir</a>
+                <form action="{% url 'excluir_carro' carro.pk %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn2" onclick="return confirm('Tem certeza que deseja excluir este carro?');">
+                        Excluir
+                    </button>
+                </form>
             </div>
         </div>
         {% empty %}

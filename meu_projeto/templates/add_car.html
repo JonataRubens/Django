@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Editar Carro{% endblock %}
+{% block title %}Adicionar Veículo{% endblock %}
 {% block content %}
 <nav class="navbar">
     <ul>
@@ -8,12 +8,12 @@
         <li><a href="{% url 'admin:index' %}">Admin</a></li>
     </ul>
 </nav>
-<h2>Editar Carro: {{ carro.modelo }}</h2>
+<h2>Adicionar Veículo</h2>
 <div class="card">
-    <form method="POST" action="{% url 'editar_carro' carro.id %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'adicionar_carro' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn">Salvar</button>
+        <button type="submit" class="btn">Adicionar</button>
     </form>
     <a href="{% url 'listar_carros' %}" class="btn2">Cancelar</a>
 </div>
