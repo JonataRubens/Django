@@ -1,103 +1,13 @@
-<!-- carros.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Carros</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 15px;
-            margin: 10px 0;
-            text-align: center;
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-
-        .card h3 {
-            margin-top: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .buttons {
-            margin-top: 10px;
-        }
-
-        .buttons a {
-            padding: 8px 16px;
-            margin: 5px;
-            color: white;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        .buttons a.delete {
-            background-color: #dc3545;
-        }
-
-        .buttons a.edit {
-            background-color: #28a745;
-        }
-        h1{
-            text-align: center;
-        }
-
-        .navbar {
-            background-color: #007bff;
-            padding: 10px;
-            color: white;
-            border-radius: 10px;
-        }
-
-        .navbar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            
-        }
-
-        .navbar ul li {
-            display: inline;
-        }
-
-        .navbar ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-        }
-
-        .navbar ul li a:hover {
-            background-color: #0056b3;
-            border-radius: 4px;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="{% static 'css/carros.css' %}">
 </head>
 <body>
-    <!-- Barra de Navegação -->
     <div class="navbar">
         <ul>
             <li><a href="{% url 'listar_carros' %}">Listar Carros</a></li>
@@ -105,7 +15,6 @@
         </ul>
     </div>
     <h1>Lista de Carros</h1>
-
     <div class="carros">
         {% for carro in veiculos %}
         <div class="card">
@@ -120,14 +29,12 @@
 
             <div class="buttons">
                 <a href="{% url 'editar_carro' carro.pk %}">Editar</a>
-
-                
+                <a id="btn_excluir" href="{% url 'excluir_carro' carro.pk %}">Excluir</a>
             </div>
         </div>
         {% empty %}
             <p>Não há carros cadastrados.</p>
         {% endfor %}
     </div>
-
 </body>
 </html>
