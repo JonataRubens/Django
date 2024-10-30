@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #007bff; /* Cor da navbar */
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start; /* Alinha à esquerda */
+    align-items: center; /* Alinha verticalmente */
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    color: white; /* Cor dos links */
+    text-decoration: none;
+    padding: 8px 16px;
+    margin: 0 5px; /* Adiciona espaçamento entre os itens */
+    border-radius: 4px; /* Bordas arredondadas */
+    background-color: transparent; /* Fundo transparente para links */
+    border: none; /* Sem borda para botão */
+    cursor: pointer; /* Cursor de ponteiro */
+    font-size:22px;
+}
+
+/* Hover para links da navbar */
+.navbar ul li a:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+.logout-button {
+    margin-left: auto; /* Move o botão de logout para a direita */
+}
+
+/* Estilo geral para todos os botões */
+.btn, .btn2, .btn-logout, .btn-edit {
+    font-size: 20px; /* Aumenta o tamanho da fonte */
+    padding: 10px 16px; /* Ajuste no espaçamento interno */
+    margin: 5px; /* Margem entre botões */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 2px solid #000; /* Borda preta */
+    cursor: pointer; /* Cursor de ponteiro */
+    display: inline-block; /* Para manter o layout em linha */
+}
+
+/* Estilos específicos */
+.btn {
+    background-color: #288d40; /* Cor do botão "Salvar" ou "Adicionar" */
+}
+
+.btn2 {
+    background-color: #a32d40; /* Cor do botão "Cancelar" */
+}
+
+.btn-edit {
+    background-color: #2aa8be; /* Cor do botão "Editar" */
+}
+
+/* Estilo do botão de logout */
+.btn-logout {
+    background-color: rgb(199, 27, 21); /* Cor de fundo do botão de logout (vermelho) */
+}
+
+/* Hover apenas para o botão de logout */
+.btn-logout:hover {
+    background-color: rgb(175, 20, 20); /* Cor ao passar o mouse (vermelho escuro) */
+}
+
+/* Estilo do card */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.card h3 {
+    margin-top: 10px;
+    font-size: 20px; /* Aumenta o tamanho da fonte para o título do card */
+    color: #333;
+}
+
+.card p {
+    font-size: 16px; /* Aumenta o tamanho da fonte para parágrafos no card */
+    color: #666;
+}

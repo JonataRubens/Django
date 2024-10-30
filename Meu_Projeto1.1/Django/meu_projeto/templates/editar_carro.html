@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Editar{% endblock %}
+{% block content %}
+<nav class="navbar">
+    <ul>
+        <li><a href="{% url 'listar_carros' %}">Lista</a></li>
+        <li><a href="{% url 'adicionar_carro' %}">Add</a></li>
+        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        <li class="logout-button">
+            <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>
+<h2>Editar Carro: {{ carro.modelo }}</h2>
+<div class="card">
+    <form method="POST" action="{% url 'editar_carro' carro.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Salvar</button>
+    </form>
+    <a href="{% url 'listar_carros' %}" class="btn2">Cancelar</a>
+</div>
+{% endblock %}
