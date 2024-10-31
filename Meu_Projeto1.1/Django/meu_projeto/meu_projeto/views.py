@@ -58,8 +58,6 @@ def adicionar_carro(request):
     return render(request, 'add_car.html', {'form': form})
 
 
-
-
 class CarroViewSet(viewsets.ModelViewSet):
     queryset = Carro.objects.all()
     serializer_class = CarroSerializer
